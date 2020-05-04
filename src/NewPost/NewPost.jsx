@@ -12,7 +12,8 @@ class NewPost extends React.Component {
             user: {
                 title: '',
                 body: '',
-                tags: ''
+                tags: '',
+                author: ''
             },
             submitted: false
         };
@@ -36,7 +37,7 @@ class NewPost extends React.Component {
         event.preventDefault();
         this.setState({ submitted: true });
         const { user } = this.state;
-
+        user.author = JSON.parse(window.localStorage.getItem('user'))['username'];
         if (user.title && user.body && user.tags) {
             this.props.create(user);
         }
